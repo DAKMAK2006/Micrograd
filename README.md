@@ -1,4 +1,4 @@
-# micrograd-from-scratch
+# Micrograd from scratch
 
 This is my minimal implementation of an autodiff engine, done from scratch in python while following Andrej Karpathy’s tutorial.
 
