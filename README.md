@@ -38,4 +38,4 @@ It was the first time that I did something entirly from scratchin neural network
 
 ---
 
-Feel free to check out the notebook. Suggestions welcome!
+DO check out the notebook as it contains a bit deeper intuition on the actual code. Suggestions are welcome!
