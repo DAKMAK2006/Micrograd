@@ -31,7 +31,7 @@ A small, functional Deep Learning library is built directly on top of the custom
 
 The custom engine's capabilities are validated by training a complete classifier:
 
-* **Dataset:** Trained a 2-layer MLP on the classic **"moon" dataset** for binary classification.
+* **Dataset:** Trained a 2-layer MLP on a custom dataset for binary classification.
 * **Loss & Optimization:** Used a custom **max-margin binary classification loss** (similar to SVM loss) and an iterative **Stochastic Gradient Descent (SGD)** loop for weight updates, demonstrating manual control over the optimization process.
 * **Visualization:** The notebook includes visualization of the final **decision boundary** learned by the network, proving the autograd engine's functionality.
 
