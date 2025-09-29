@@ -1,41 +1,44 @@
-# Micrograd from scratch
+# 🧠 micrograd from Scratch: A Scalar Autograd Engine
 
-This is my minimal implementation of an autodiff engine, done from scratch in python while following Andrej Karpathy’s tutorial.
+## Project Description
 
-I’ve implemented:
-- A basic `Value` class that tracks data and gradients
-- Operator overloading for building computation graphs
-- Manual training loop for a tiny neural network
-- Backpropagation from scratch
+This project implements a complete **scalar-valued automatic differentiation (autograd) engine** and a minimal Neural Network library from scratch in Python.
 
-This project helped me understand:
-- How autograd works internally
-- What backward passes actually mean
-- How neural networks are *actually* trained under the hood
-- How to debug from gradients to final outputs
+The core goal is to build the mathematical foundation of deep learning—specifically, the **reverse-mode backpropagation** algorithm—without relying on high-level libraries (like PyTorch or TensorFlow) for gradient computation. This implementation provides **full algorithmic transparency** into how the chain rule is applied during neural network training.
 
 ---
 
-## Files
-- `micrograd_from_scratch.ipynb`: Contains everything — code, comments, and training loop
-- Not using any ML library here — it’s pure Python and math
+## 🛠️ Implementation Details
+
+### 1. Automatic Differentiation Core
+
+The project is driven by a custom `Value` object that forms a dynamically constructed computational graph:
+
+* **`Value` Class:** A custom scalar data structure that holds both the numeric `data` and the computed `grad` (derivative) at every node.
+* **Dynamic DAG:** Mathematical operations (`+`, `*`, `tanh`, `relu`, `pow`) are overloaded to dynamically build a **Directed Acyclic Graph (DAG)**, which tracks dependencies for the backward pass.
+* **Backpropagation:** The `.backward()` method performs **reverse-mode backpropagation**, recursively applying the chain rule to compute and accumulate the gradient for all operations in the graph.
+
+### 2. Neural Network Library
+
+A small, functional Deep Learning library is built directly on top of the custom `Value` object:
+
+* **`Neuron`, `Layer`, and `MLP`:** Implemented custom classes to handle the standard components of an **MLP (Multi-Layer Perceptron)**.
+* **Activation Functions:** Supports non-linearities like $\mathbf{tanh}$ and $\mathbf{relu}$.
 
 ---
 
-## Output Sample
-After a few iterations, you’ll see printed loss values decreasing like:
+## 🚀 Demo & Results
 
-```
-0 21.142276445052506
-1 16.830653144768175
-...
-```
+The custom engine's capabilities are validated by training a complete classifier:
 
----
-
-## Why I Did This
-It was the first time that I did something entirly from scratchin neural networks cause untill now I had implemented these neural networks but using some library here and there and that also under a certified course so files were pre-written. It was a really good learning experience.
+* **Dataset:** Trained a 2-layer MLP on the classic **"moon" dataset** for binary classification.
+* **Loss & Optimization:** Used a custom **max-margin binary classification loss** (similar to SVM loss) and an iterative **Stochastic Gradient Descent (SGD)** loop for weight updates, demonstrating manual control over the optimization process.
+* **Visualization:** The notebook includes visualization of the final **decision boundary** learned by the network, proving the autograd engine's functionality.
 
 ---
 
-DO check out the notebook as it contains a bit deeper intuition on the actual code. Suggestions are welcome!
+## 💡 Usage
+
+1.  Clone this repository.
+2.  Open the notebook: `micrograd_from_scratch.ipynb`.
+3.  Execute the cells to follow the implementation of the `Value` class, build the MLP, and train the final classifier.
